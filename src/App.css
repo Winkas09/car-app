@@ -1,38 +1,63 @@
-.App {
-  text-align: center;
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Form styles */
+form {
+  background: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+form input,
+form select,
+form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+form button:hover {
+  background-color: #0056b3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Car item styles */
+.car-item {
+  background: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+}
+
+.car-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.car-item h3 {
+  margin-top: 0;
+}
+
+.car-item p {
+  margin: 5px 0;
 }

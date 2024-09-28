@@ -1,26 +1,29 @@
 const ExtraPrice = (engine, color, transmission) => {
-  let extraPrice = 0;
+  let enginePrice = 0;
+  let colorPrice = 0;
+  let transmissionPrice = 0;
 
   switch (engine) {
     case "electric":
-      extraPrice += 10000;
+      enginePrice += 10000;
       break;
     case "hybrid":
-      extraPrice += 7500;
+      enginePrice += 7500;
       break;
     case "diesel":
-      extraPrice += 5000;
+      enginePrice += 5000;
       if (transmission === "automatic") {
-        extraPrice += 2000;
+        transmissionPrice += 2000;
       } else if (transmission === "manual") {
-        extraPrice += 1000;
+        transmissionPrice += 1000;
       }
       break;
     case "petrol":
+      enginePrice += 2000;
       if (transmission === "automatic") {
-        extraPrice += 2000;
+        transmissionPrice += 2000;
       } else if (transmission === "manual") {
-        extraPrice += 1000;
+        transmissionPrice += 1000;
       }
       break;
     default:
@@ -28,14 +31,24 @@ const ExtraPrice = (engine, color, transmission) => {
   }
 
   if (color === "special blue") {
-    extraPrice += 500;
+    colorPrice += 500;
   } else if (color !== "black") {
-    extraPrice += 3000;
+    colorPrice += 3000;
   }
 
-  console.log(`Extra Price: ${extraPrice}€`);
+  const totalExtraPrice = enginePrice + colorPrice + transmissionPrice;
 
-  return extraPrice;
+  console.log(`Engine Price: ${enginePrice}€`);
+  console.log(`Color Price: ${colorPrice}€`);
+  console.log(`Transmission Price: ${transmissionPrice}€`);
+  console.log(`Total Extra Price: ${totalExtraPrice}€`);
+
+  return {
+    enginePrice,
+    colorPrice,
+    transmissionPrice,
+    totalExtraPrice,
+  };
 };
 
 export default ExtraPrice;

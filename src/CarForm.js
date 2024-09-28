@@ -7,12 +7,13 @@ const CarForm = ({ addCar }) => {
     model: "",
     year: "",
     engine: "petrol",
-    basePrice: 0,
-    mileage: 0,
+    basePrice: "",
+    mileage: "",
     color: "black",
     otherColor: "",
     imageUrl: "",
-    discount: 0,
+    discount: "",
+    transmission: "",
   });
 
   const handleChange = (e) => {
@@ -33,11 +34,12 @@ const CarForm = ({ addCar }) => {
       year: "",
       engine: "petrol",
       basePrice: "",
-      mileage: 0,
+      mileage: "",
       color: "black",
       otherColor: "",
       imageUrl: "",
-      discount: 0,
+      discount: "",
+      transmission: "",
     });
   };
 
@@ -85,6 +87,25 @@ const CarForm = ({ addCar }) => {
           <option value="petrol">Petrol</option>
         </select>
       </label>
+      {["diesel", "petrol"].includes(formData.engine) && (
+        <label>
+          Transmission:
+          <select name="transmission" value={formData.transmission} onChange={handleChange}>
+            <option value="">Select Transmission</option>
+            <option value="manual">Manual</option>
+            <option value="automatic">Automatic</option>
+          </select>
+        </label>
+      )}
+      {["electric", "hybrid"].includes(formData.engine) && (
+        <label>
+          Transmission:
+          <select name="transmission" value={formData.transmission} onChange={handleChange}>
+            <option value="">Select Transmission</option>
+            <option value="automatic">Automatic</option>
+          </select>
+        </label>
+      )}
       <label>
         Base Price:
         <input

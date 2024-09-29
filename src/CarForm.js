@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import "./App.css"; // Import the CSS file
+import React, { useState, useContext } from "react"; // cia klaida 
+import "./App.css"; 
+import { CarContext } from "./CarContext"; // cia klaida
 
-const CarForm = ({ addCar }) => {
+const CarForm = () => {
+  const { addCar } = useContext(CarContext);
   const [formData, setFormData] = useState({
     brand: "",
     model: "",

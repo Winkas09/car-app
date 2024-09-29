@@ -1,6 +1,9 @@
 import CarItem from "./CarItem";
+import React, { useContext } from "react";
+import { CarContext } from "./CarContext";
 
-const CarList = ({ cars }) => {
+const CarList = () => {
+  const { cars } = useContext(CarContext);
   return (
     <div>
       {cars.map((car, index) => (

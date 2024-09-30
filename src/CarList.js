@@ -4,6 +4,10 @@ import { CarContext } from "./CarContext";
 
 const CarList = () => {
   const { cars } = useContext(CarContext);
+
+  if (cars.length === 0) {
+    return <h2>No cars yet...</h2>;
+  }
   return (
     <div>
       {cars.map((car, index) => (

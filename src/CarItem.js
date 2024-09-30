@@ -32,25 +32,27 @@ const CarItem = ({ car }) => {
         {car.brand} {car.model} ({car.year})
       </h3>
       <p>Automobilio kaina:</p>
-      <p>1. Bazinė kaina: {basePrice}€</p>
-      <p>2. Papildomos paslaugos:</p>
-      <p>
-        2.1. Variklio tipas: {car.engine} ({enginePrice}€)
-      </p>
-      <p>
-        2.2. Spalva: {car.color} ({colorPrice}€)
-      </p>
-      <p>
-        2.3. Transmisija: {car.transmission} ({transmissionPrice}€)
-      </p>
-      <p>2.4. Viso už papildomas paslaugas: {totalExtraPrice}€</p>
-      <p>3. Kainos sumažėjimas:</p>
-      <p>3.1. Dėl kilometražo: {carDiscount(car.mileage, 0, car.year, basePrice)}€</p>
-      <p>3.2. Nuolaida: {car.discount}€</p>
-      <p>3.3. Viso kainos sumažėjimas: {discount}€</p>
-      <p>4. Galutinė kaina: {finalPrice}€</p>
-      <p>5. PVM (21%): {vat}€</p>
-      <p>6. Galutinė kaina su PVM: {finalPriceWithVAT}€</p>
+      <ul>
+        <li>Bazinė kaina: {basePrice}€</li>
+        <li>Papildomos paslaugos:
+          <ul>
+            <li>Variklio tipas: {car.engine} ({enginePrice}€)</li>
+            <li>Spalva: {car.color} ({colorPrice}€)</li>
+            <li>Transmisija: {car.transmission} ({transmissionPrice}€)</li>
+            <li>Viso už papildomas paslaugas: {totalExtraPrice}€</li>
+          </ul>
+        </li>
+        <li>Kainos sumažėjimas:
+          <ul>
+            <li>Dėl kilometražo: {carDiscount(car.mileage, 0, car.year, basePrice)}€</li>
+            <li>Nuolaida: {car.discount}€</li>
+            <li>Viso kainos sumažėjimas: {discount}€</li>
+          </ul>
+        </li>
+        <li>Galutinė kaina: {finalPrice}€</li>
+        <li>PVM (21%): {vat}€</li>
+        <li>Galutinė kaina su PVM: {finalPriceWithVAT}€</li>
+      </ul>
       {car.imageUrl && <img src={car.imageUrl} alt={`${car.brand} ${car.model}`} />}
     </div>
   );

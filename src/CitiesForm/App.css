@@ -1,0 +1,71 @@
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+  .city-item {
+    width: calc(50% - 20px);
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: wheat;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+  }
+  
+  .city-item:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.02);
+  }
+  
+  .city-item.full-width {
+    width: 100%;
+    background-color: rgba(204, 126, 23, 0.603);
+    color: white;
+    text-align: center;
+  }
+  
+  .city-item.full-width:hover {
+    background-color: #d36f51;
+    transform: scale(1.02);
+  }
+  
+  .city-item h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #333;
+  }
+  
+  .city-item.full-width h2 {
+    color: white;
+  }
+  
+  .city-item p {
+    margin: 10px 0;
+    color: #666;
+  }
+  
+  .city-item.full-width p {
+    color: white;
+  }
+  
+  .cities-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  input {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  

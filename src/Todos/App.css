@@ -1,0 +1,112 @@
+.todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .form-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .form-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .todo-item {
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #dad5d2;
+    transition: background-color 0.3s ease;
+  }
+  
+  .todo-item.done {
+    background-color: #56ce72;
+    text-decoration: line-through black;
+    color: grey;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  li {
+    list-style-type: none;
+  }
+  
+  ul {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  li.todo-item button:first-of-type {
+    padding: 5px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0056b3;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  li.todo-item button:first-of-type:hover {
+    background-color: green;
+  }
+  
+  li.todo-item button:last-of-type {
+    padding: 5px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  li.todo-item button:last-of-type:hover {
+    background-color: darkred;
+  }
+  
+  li.todo-item.done button:first-of-type {
+    background-color: green;
+  }
+  li.todo-item.done button:first-of-type:hover {
+    background-color: #0056b3;
+  }
+  
+  h4 {
+    text-align: center;
+    font-size: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  

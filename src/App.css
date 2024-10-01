@@ -176,3 +176,77 @@ li.todo-item.done button:first-of-type:hover {
 a.active {
   color: red;
 }
+
+a {
+  text-decoration: none;
+padding: 10px 15px;
+border: 1px solid #ccc;
+border-radius: 4px;
+background-color: #007bff;
+color: white;
+cursor: pointer;
+display: inline-block;
+transition: background-color 0.3s ease;
+}
+
+a:hover {
+background-color: #0056b3;
+  color: black;
+}
+
+nav {
+  background-color: #f4f4f4;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+nav a {
+  background-color: grey;
+  margin: 0 15px;
+  font-size: 16px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 10px 15px;
+  border-radius: 4px;
+  width: 100px;
+  text-align: center;
+  display: inline-block;
+}
+
+nav a:hover {
+  background-color: #dda1a1;
+  color: black;
+}
+
+
+
+  .home-nav li a {
+    color: white;
+    background-color: #f38f8f;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .home-nav li a:hover {
+    background-color: red;
+  }
+
+  .api-item {
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+  }
+
+  .api-item a {
+    display: block;
+    text-align: center;
+  }
+
+  p {
+    margin: 10px 0;
+    text-align: center;
+  }

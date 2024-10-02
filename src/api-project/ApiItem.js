@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ApiItem = ({ item, type }) => {
@@ -6,12 +5,20 @@ const ApiItem = ({ item, type }) => {
     case 'user':
       return (
         <div className='api-item'>
-          <h2>{item.name}</h2>
-          <p>Email: {item.email}</p>
-          <p>Phone: {item.phone}</p>
-          <Link to={`/user/${item.id}`}>View Details</Link>
-
-        </div>
+        <h2>{item.name}</h2>
+        <p>Email: {item.email}</p>
+        <p>Phone: {item.phone}</p>
+        <p>Username: {item.username}</p>
+        <p>Website: {item.website}</p>
+        <h3>Address</h3>
+        <p>{item.address.street}, {item.address.suite}</p>
+        <p>{item.address.city}, {item.address.zipcode}</p>
+        <h3>Company</h3>
+        <p>{item.company.name}</p>
+        <p>{item.company.catchPhrase}</p>
+        <p>{item.company.bs}</p>
+        <Link to={`/user/${item.id}`}>View Details</Link>
+      </div>
       );
     case 'album':
       return (

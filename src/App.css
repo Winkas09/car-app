@@ -106,6 +106,7 @@ li.todo-item button:first-of-type {
   color: white;
   font-size: 16px;
   cursor: pointer;
+  text-align: center;
 }
 
 li.todo-item button:first-of-type:hover {
@@ -187,6 +188,7 @@ color: white;
 cursor: pointer;
 display: inline-block;
 transition: background-color 0.3s ease;
+text-align: center;
 }
 
 a:hover {
@@ -248,5 +250,9 @@ nav a:hover {
 
   p {
     margin: 10px 0;
+    text-align: center;
+  }
+
+  h3 {
     text-align: center;
   }

@@ -1,10 +1,10 @@
-import ApiPage from './ApiPage';
+// import ApiPage from './ApiPage';
 
-const ProjectAlbumsPage = () => {
-  return <ApiPage apiEndpoint="https://jsonplaceholder.typicode.com/albums" title="Albums" type="album" />;
-};
+// const ProjectAlbumsPage = () => {
+//   return <ApiPage apiEndpoint="https://jsonplaceholder.typicode.com/albums" title="Albums" type="album" />;
+// };
 
-export default ProjectAlbumsPage;
+// export default ProjectAlbumsPage;
 
 
 // import { useEffect, useState } from 'react';
@@ -34,3 +34,32 @@ export default ProjectAlbumsPage;
 // };
 
 // export default ProjectAlbumsPage;
+
+
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+const ProjectAlbumsPage = () => {
+  const [albums, setAlbums] = useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/albums?_limit=10')
+      .then(res => res.json())
+      .then(data => setAlbums(data));
+  }, []);
+
+  return (
+    <div>
+      <h1>Albums list:</h1>
+      <ul>
+        {albums.map(album => (
+          <li key={album.id}>
+            <Link to={`/project/albums/${album.id}`}>{album.title}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default ProjectAlbumsPage;

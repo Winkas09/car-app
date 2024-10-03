@@ -43,7 +43,7 @@ const ProjectAlbumsPage = () => {
   const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/albums?_limit=10')
+    fetch('http://localhost:3000/albums')
       .then(res => res.json())
       .then(data => setAlbums(data));
   }, []);

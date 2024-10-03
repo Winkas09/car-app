@@ -11,7 +11,7 @@ const AlbumDetailPage = () => {
 
   useEffect(() => {
     // Fetch album details
-    fetch(`https://jsonplaceholder.typicode.com/albums/${id}`)
+    fetch(`http://localhost:3000/albums/${id}`)
       .then(res => {
         if (!res.ok) {
           throw new Error('Network response was not ok');
@@ -20,7 +20,7 @@ const AlbumDetailPage = () => {
       })
       .then(data => {
         setAlbum(data);
-        return fetch(`https://jsonplaceholder.typicode.com/users/${data.userId}`);
+        return fetch(`http://localhost:3000/users/${data.userId}`);
       })
       .then(res => {
         if (!res.ok) {
@@ -37,11 +37,10 @@ const AlbumDetailPage = () => {
         setLoading(false);
       });
 
-    // Fetch photos for the album, limited to 10
-    fetch(`https://jsonplaceholder.typicode.com/albums/${id}/photos?_limit=10`)
+      fetch(`http://localhost:3000/photos?albumId=${id}&_limit=10`)
       .then(res => {
         if (!res.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Network response was not oka');
         }
         return res.json();
       })

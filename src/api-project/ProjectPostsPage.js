@@ -5,7 +5,7 @@ const ProjectPostsPage = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
+    fetch('http://localhost:3000/posts?_limit=10')
       .then(res => res.json())
       .then(data => setPosts(data));
   }, []);

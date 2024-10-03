@@ -3,42 +3,14 @@ import { useParams, Link } from 'react-router-dom';
 
 const PostDetailPage = () => {
   const { id } = useParams();
-  const [post, setPost] = useState(null);
-  const [comments, setComments] = useState([]);
-  const [user, setUser] = useState(null);
+  const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    // Fetch post details
-    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return res.json();
-      })
-      .then(data => {
-        setPost(data);
-        return fetch(`https://jsonplaceholder.typicode.com/users/${data.userId}`);
-      })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return res.json();
-      })
-      .then(userData => {
-        setUser(userData);
-        setLoading(false);
-      })
-      .catch(error => {
-        setError(error);
-        setLoading(false);
-      });
+  const { title, body, user, comments } = data;
 
-    // Fetch comments for the post
-    fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments?_limit=10`)
+  useEffect(() => {
+    fetch(`http://localhost:3000/posts/${id}?_embed=comments&_embed=user`)
       .then(res => {
         if (!res.ok) {
           throw new Error('Network response was not ok');
@@ -46,10 +18,12 @@ const PostDetailPage = () => {
         return res.json();
       })
       .then(data => {
-        setComments(data);
+        setData(data);
+        setLoading(false);
       })
       .catch(error => {
         setError(error);
+        setLoading(false);
       });
   }, [id]);
 
@@ -61,14 +35,14 @@ const PostDetailPage = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  if (!post) {
+  if (!data) {
     return <div>No post found</div>;
   }
 
   return (
     <div>
-      <h1>{post.title}</h1>
-      <p>{post.body}</p>
+      <h1>{title}</h1>
+      <p>{body}</p>
       {user && (
         <div>
           <h2>Author Information</h2>
@@ -79,15 +53,19 @@ const PostDetailPage = () => {
         </div>
       )}
       <Link to="/project/posts">Back to Posts List</Link>
-      <h2>Comments</h2>
-      <ul>
-        {comments.map(comment => (
-          <li key={comment.id}>
-            <p><strong>{comment.name}</strong> ({comment.email})</p>
-            <p>{comment.body}</p>
-          </li>
-        ))}
-      </ul>
+      {comments && comments.length > 0 && (
+        <div>
+          <h2>Comments</h2>
+          <ul>
+            {comments.map(comment => (
+              <li key={comment.id}>
+                <p><strong>{comment.name}</strong> ({comment.email})</p>
+                <p>{comment.body}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

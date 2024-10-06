@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { InfinitySpin } from 'react-loader-spinner';
+import { Hourglass } from 'react-loader-spinner';
 
 const UserDetailPage = () => {
   const { id } = useParams();
@@ -29,7 +29,7 @@ const UserDetailPage = () => {
   if (loading) {
     return (
       <div>
-        <InfinitySpin
+        <Hourglass
           width='200'
           color="#4fa94d"
         />

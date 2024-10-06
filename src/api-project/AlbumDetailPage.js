@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Hourglass } from 'react-loader-spinner';
 
 const AlbumDetailPage = () => {
   const { id } = useParams();
@@ -53,7 +54,7 @@ const AlbumDetailPage = () => {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Hourglass  wrapperClass='spinner'  />;
   }
 
   if (error) {

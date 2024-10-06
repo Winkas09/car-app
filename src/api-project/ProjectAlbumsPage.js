@@ -38,19 +38,30 @@
 
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Hourglass } from 'react-loader-spinner';
 
 const ProjectAlbumsPage = () => {
   const [albums, setAlbums] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('http://localhost:3000/albums')
       .then(res => res.json())
       .then(data => setAlbums(data));
+      setLoading(false);
   }, []);
 
   return (
     <div>
       <h1>Albums list:</h1>
+      {loading ? (
+        <div>
+          <Hourglass
+            width='200'
+            color="#4fa94d"
+          />
+        </div>
+      ) : (
       <ul>
         {albums.map(album => (
           <li key={album.id}>
@@ -58,6 +69,7 @@ const ProjectAlbumsPage = () => {
           </li>
         ))}
       </ul>
+      )}
     </div>
   );
 };

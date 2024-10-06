@@ -256,3 +256,9 @@ nav a:hover {
   h3 {
     text-align: center;
   }
+
+  .spinner {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }

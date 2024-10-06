@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Hourglass } from 'react-loader-spinner';
 
 const PostDetailPage = () => {
   const { id } = useParams();
@@ -28,7 +29,7 @@ const PostDetailPage = () => {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Hourglass  wrapperClass='spinner'/>;
   }
 
   if (error) {
@@ -49,7 +50,7 @@ const PostDetailPage = () => {
           <p><strong><Link to={`/project/users/${user.id}`}>{user.name}</Link></strong></p>
           <p>Email: {user.email}</p>
           <p>Phone: {user.phone}</p>
-          <p>Website: <a href={`http://${user.website}`} target="_blank" rel="noopener noreferrer">{user.website}</a></p>
+          <p>Website: <a href={`http://${user.website}`} target="_blank" >{user.website}</a></p>
         </div>
       )}
       <Link to="/project/posts">Back to Posts List</Link>

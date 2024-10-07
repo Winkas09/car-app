@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Hourglass } from 'react-loader-spinner';
+import { API_URL } from './Config';
 
 const PostDetailPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,7 +13,7 @@ const PostDetailPage = () => {
   const { title, body, user, comments } = data;
 
   useEffect(() => {
-    fetch(`http://localhost:3000/posts/${id}?_embed=comments&_embed=user`)
+    fetch(`${API_URL}/posts/${id}?_embed=comments&_embed=user`)
       .then(res => {
         if (!res.ok) {
           throw new Error('Network response was not ok');
@@ -28,8 +30,23 @@ const PostDetailPage = () => {
       });
   }, [id]);
 
+  const handleDelete = () => {
+    fetch(`${API_URL}/posts/${id}`, {
+      method: 'DELETE',
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        navigate('/project/posts');
+      })
+      .catch(error => {
+        setError(error);
+      });
+  };
+
   if (loading) {
-    return <Hourglass  wrapperClass='spinner'/>;
+    return <Hourglass wrapperClass='spinner' />;
   }
 
   if (error) {
@@ -54,6 +71,7 @@ const PostDetailPage = () => {
         </div>
       )}
       <Link to="/project/posts">Back to Posts List</Link>
+      <button className='delete-button-api' onClick={handleDelete}>Delete Post</button>
       {comments && comments.length > 0 && (
         <div>
           <h2>Comments</h2>

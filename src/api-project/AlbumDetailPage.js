@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { Hourglass } from 'react-loader-spinner';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { API_URL } from './Config';
 
 const AlbumDetailPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [album, setAlbum] = useState(null);
-  const [photos, setPhotos] = useState([]);
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch album details
-    fetch(`http://localhost:3000/albums/${id}`)
+    fetch(`${API_URL}/albums/${id}`)
       .then(res => {
         if (!res.ok) {
           throw new Error('Network response was not ok');
@@ -21,40 +19,31 @@ const AlbumDetailPage = () => {
       })
       .then(data => {
         setAlbum(data);
-        return fetch(`http://localhost:3000/users/${data.userId}`);
+        setLoading(false);
       })
+      .catch(error => {
+        setError(error);
+        setLoading(false);
+      });
+  }, [id]);
+
+  const handleDelete = () => {
+    fetch(`${API_URL}/albums/${id}`, {
+      method: 'DELETE',
+    })
       .then(res => {
         if (!res.ok) {
           throw new Error('Network response was not ok');
         }
-        return res.json();
-      })
-      .then(userData => {
-        setUser(userData);
-        setLoading(false);
-      })
-      .catch(error => {
-        setError(error);
-        setLoading(false);
-      });
-
-      fetch(`http://localhost:3000/photos?albumId=${id}&_limit=10`)
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('Network response was not oka');
-        }
-        return res.json();
-      })
-      .then(data => {
-        setPhotos(data);
+        navigate('/project/albums');
       })
       .catch(error => {
         setError(error);
       });
-  }, [id]);
+  };
 
   if (loading) {
-    return <Hourglass  wrapperClass='spinner'  />;
+    return <div>Loading...</div>;
   }
 
   if (error) {
@@ -68,25 +57,9 @@ const AlbumDetailPage = () => {
   return (
     <div>
       <h1>{album.title}</h1>
-      {user && (
-        <div>
-          <h2>Author Information</h2>
-          <p><strong><Link to={`/project/users/${user.id}`}>{user.name}</Link></strong></p>
-          <p>Email: {user.email}</p>
-          <p>Phone: {user.phone}</p>
-          <p>Website: <a href={`http://${user.website}`} target="_blank" rel="noopener noreferrer">{user.website}</a></p>
-        </div>
-      )}
-      <Link to="/project/albums">Back to Albums List</Link>
-      <h2>Photos</h2>
-      <ul>
-        {photos.map(photo => (
-          <li key={photo.id}>
-            <img src={photo.thumbnailUrl} alt={photo.title} />
-            <p>{photo.title}</p>
-          </li>
-        ))}
-      </ul>
+      <p>Album ID: {album.id}</p>
+      <button className='delete-button-api' onClick={handleDelete}>Delete Album</button>
+      <Link to="/project/albums">Back to Albums</Link>
     </div>
   );
 };

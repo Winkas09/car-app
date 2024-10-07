@@ -58,6 +58,8 @@ import AlbumDetailPage from "./api-project/AlbumDetailPage";
 import "./App.css";
 import PageHeader from "./PageHeader.js";
 import HomePage from "./HomePage.js";
+import CreatePostPage from "./api-project/CreatePostPage.js";
+import CreateAlbumPage from "./api-project/CreateAlbumPage.js";
 
 function App() {
   return (
@@ -75,6 +77,8 @@ function App() {
         <Route path="/project/posts/:id" element={<PostDetailPage />} />
         <Route path="/project/albums" element={<ProjectAlbumsPage />} />
         <Route path="/project/albums/:id" element={<AlbumDetailPage />} />
+        <Route path="/project/create-post" element={<CreatePostPage />} />
+        <Route path="/project/create-album" element={<CreateAlbumPage />} />
       </Routes>
     </>
   );

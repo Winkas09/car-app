@@ -11843,5 +11843,24 @@
       "url": "https://via.placeholder.com/600/fab5da",
       "thumbnailUrl": "https://via.placeholder.com/150/fab5da"
     }
-  ]
+  ],
+  "cars": [
+    {
+      "id": "ce33",
+      "brand": "Audi",
+      "model": "a6",
+      "year": "2005",
+      "engine": "petrol",
+      "basePrice": "15000",
+      "mileage": "100000",
+      "color": "black",
+      "otherColor": "",
+      "imageUrl": "asdasd",
+      "discount": "1500",
+      "transmission": "manual"
+    }
+  ],
+  "cities": [],
+  "students": [],
+  "todos": []
 }

@@ -45,7 +45,7 @@
 // export default App;
 
 import { Routes, Route } from "react-router-dom";
-import CarPage from "./CarPage";
+import CarPage from "./car-project/CarPage.js";
 import CitiesPage from "./CitiesForm/CitiesPage";
 import ToDoPage from "./Todos/ToDoPage";
 import ProjectHomePage from "./api-project/ProjectHomePage";
@@ -55,11 +55,13 @@ import ProjectAlbumsPage from "./api-project/ProjectAlbumsPage";
 import UserDetailPage from "./api-project/UserDetailPage";
 import PostDetailPage from "./api-project/PostDetailPage";
 import AlbumDetailPage from "./api-project/AlbumDetailPage";
-import "./App.css";
+import "./App";
 import PageHeader from "./PageHeader.js";
 import HomePage from "./HomePage.js";
 import CreatePostPage from "./api-project/CreatePostPage.js";
 import CreateAlbumPage from "./api-project/CreateAlbumPage.js";
+import StudentPage from "./students-project/StudentPage.js";
+
 
 function App() {
   return (
@@ -79,6 +81,7 @@ function App() {
         <Route path="/project/albums/:id" element={<AlbumDetailPage />} />
         <Route path="/project/create-post" element={<CreatePostPage />} />
         <Route path="/project/create-album" element={<CreateAlbumPage />} />
+        <Route path="/students" element={<StudentPage />} />
       </Routes>
     </>
   );

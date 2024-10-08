@@ -285,17 +285,17 @@ nav a:hover {
 }
 
 .post-list li a {
-  padding: 0; /* Remove padding */
-  border: none; /* Remove border */
-  border-radius: 0; /* Remove border-radius */
-  background-color: transparent; /* Remove background color */
-  color: #333; /* Change text color */
-  font-weight: bold; /* Make text bold */
+  padding: 0; 
+  border: none; 
+  border-radius: 0; 
+  background-color: transparent; 
+  color: #333; 
+  font-weight: bold; 
 }
 
 .post-list li a:hover {
-  text-decoration: underline; /* Add underline on hover */
-  background-color: transparent; /* Ensure no background color on hover */
+  text-decoration: underline; 
+  background-color: transparent; 
 }
 
 .delete-button-api {

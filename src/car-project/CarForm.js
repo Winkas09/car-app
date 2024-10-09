@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react"; // cia klaida 
 import "../App.css"; 
 import { CarContext } from "./CarContext"; // cia klaida
-import { API_URL } from "../config";
+import { API_URL } from "../api-project/Config"; // cia klaida
 
 const CarForm = () => {
   const { addCar } = useContext(CarContext);
@@ -42,7 +42,7 @@ const CarForm = () => {
       .then((createdCar) => {
         addCar(createdCar);
       });
-      
+
     setFormData({
       brand: "",
       model: "",

@@ -14,7 +14,7 @@ const CitiesForm = ({ addCity }) => {
       .split(",")
       .map((attraction) => attraction.trim())
       .filter((attraction) => attraction.length > 0);
-
+    
     const newCity = {
       name,
       population: Number(population),
@@ -25,7 +25,11 @@ const CitiesForm = ({ addCity }) => {
       touristAttractions: attractionsArray,
       isCapital,
     };
+
+    // Call the addCity function passed as a prop
     addCity(newCity);
+    
+    // Reset form fields after submission
     setName("");
     setPopulation("");
     setContinent("");

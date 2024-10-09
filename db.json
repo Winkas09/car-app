@@ -599,6 +599,12 @@
       "id": "100",
       "title": "at nam consequatur ea labore ea harum",
       "body": "cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut"
+    },
+    {
+      "id": "0f21",
+      "title": "asdas",
+      "body": "asdasd",
+      "userId": 3
     }
   ],
   "users": [
@@ -11860,7 +11866,38 @@
       "transmission": "manual"
     }
   ],
-  "cities": [],
-  "students": [],
-  "todos": []
+  "cities": [
+    {
+      "id": "ac9c",
+      "name": "asdasd",
+      "population": 4564,
+      "location": {
+        "continent": "asdasd",
+        "country": "asdasd"
+      },
+      "touristAttractions": [
+        "AAA"
+      ],
+      "isCapital": true
+    }
+  ],
+  "students": [
+    {
+      "id": "85a7",
+      "name": "asdasd",
+      "age": "18",
+      "phoneNumber": "+3700600654",
+      "email": "easd@asdas.com"
+    }
+  ],
+  "todos": [
+    {
+      "id": "0.044634563228641344",
+      "title": "asddd",
+      "description": "ddd",
+      "dueDate": "2024-10-22",
+      "creationDate": "10/8/2024",
+      "done": false
+    }
+  ]
 }

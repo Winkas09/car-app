@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { ToDoContext } from "./ToDoContext";
 import "./App.css";
+import { API_URL } from "../api-project/Config";
 
 const ToDoForm = () => {
   const [title, setTitle] = useState("");
@@ -19,7 +20,20 @@ const ToDoForm = () => {
         creationDate: new Date().toLocaleDateString(),
         done: false,
       };
-      addTodo(newTodo);
+
+
+      fetch(`${API_URL}/todos`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTodo),
+      })
+        .then((response) => response.json())
+        .then((createdTodo) => {
+          addTodo(createdTodo);
+        });
+
       setTitle("");
       setDescription("");
       setDueDate("");

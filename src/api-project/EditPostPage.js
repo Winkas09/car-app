@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { API_URL } from './Config';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-const CreatePostPage = () => {
+const EditPostPage = () => {
     const [selectedUser, setSelectedUser] = useState('empty');
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [users, setUsers] = useState([]);
-    const [createdPost, setPostCreated] = useState(null);
-    const [isEditing, setIsEditing] = useState(false); // Corrected this line
     const { postId } = useParams();
     const navigate = useNavigate();
 
@@ -23,7 +21,6 @@ const CreatePostPage = () => {
 
     useEffect(() => {
         if (postId) {
-            setIsEditing(true);
             fetch(`${API_URL}/posts/${postId}`)
                 .then(res => res.json())
                 .then(data => {
@@ -47,23 +44,21 @@ const CreatePostPage = () => {
             return;
         }
 
-        const newPost = {
+        const updatedPost = {
             title,
             body,
             userId: parseInt(selectedUser, 10)
         };
 
         const requestOptions = {
-            method: isEditing ? 'PUT' : 'POST',
-            body: JSON.stringify(newPost),
+            method: 'PUT',
+            body: JSON.stringify(updatedPost),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         };
 
-        const url = isEditing ? `${API_URL}/posts/${postId}` : `${API_URL}/posts`;
-
-        fetch(url, requestOptions)
+        fetch(`${API_URL}/posts/${postId}`, requestOptions)
             .then(res => {
                 if (!res.ok) {
                     console.error(`Network response was not ok: ${res.status} ${res.statusText}`);
@@ -72,15 +67,14 @@ const CreatePostPage = () => {
                 return res.json();
             })
             .then(data => {
-                setPostCreated(data);
                 navigate(`/project/posts/${data.id}`);
             })
-            .catch(error => console.error('Error creating post:', error));
+            .catch(error => console.error('Error updating post:', error));
     };
 
     return (
         <div>
-            <h1>{isEditing ? 'Edit Post' : 'Create a New Post'}</h1>
+            <h1>Edit Post</h1>
             <form onSubmit={submitHandler}>
                 <div>
                     <label htmlFor="user">User:</label>
@@ -112,23 +106,10 @@ const CreatePostPage = () => {
                         required
                     />
                 </div>
-                <button type="submit">{isEditing ? 'Update Post' : 'Create Post'}</button>
+                <button type="submit">Update Post</button>
             </form>
-            {createdPost && (
-                <div>
-                    <h2>Post {isEditing ? 'Updated' : 'Created'} Successfully!</h2>
-                    <p>Title: {createdPost.title}</p>
-                    <p>Body: {createdPost.body}</p>
-                    <h2>Author Information</h2>
-                    <p><strong><Link to={`/project/users/${createdPost.userId}`}>{users.find(user => user.id === createdPost.userId)?.name}</Link></strong></p>
-                    <p>Email: {users.find(user => user.id === createdPost.userId)?.email}</p>
-                    <p>Phone: {users.find(user => user.id === createdPost.userId)?.phone}</p>
-                    <p>Website: <a href={`http://${users.find(user => user.id === createdPost.userId)?.website}`} target="_blank" rel="noopener noreferrer">{users.find(user => user.id === createdPost.userId)?.website}</a></p>
-                    <Link to={`/project/posts/${createdPost.id}`}>View Post</Link>
-                </div>
-            )}
         </div>
     );
 };
 
-export default CreatePostPage;
+export default EditPostPage;

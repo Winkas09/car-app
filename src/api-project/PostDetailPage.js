@@ -59,7 +59,6 @@ const PostDetailPage = () => {
 
   return (
     <div>
-      
       <h1>{title}</h1>
       <p>{body}</p>
       {user && (
@@ -73,6 +72,7 @@ const PostDetailPage = () => {
       )}
       <Link to="/project/posts">Back to Posts List</Link>
       <button className='delete-button-api' onClick={handleDelete}>Delete Post</button>
+      <Link to={`/project/posts/edit/${id}`}><button>Edit Post</button></Link>
       {comments && comments.length > 0 && (
         <div>
           <h2>Comments</h2>

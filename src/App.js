@@ -61,6 +61,7 @@ import HomePage from "./HomePage.js";
 import CreatePostPage from "./api-project/CreatePostPage.js";
 import CreateAlbumPage from "./api-project/CreateAlbumPage.js";
 import StudentPage from "./students-project/StudentPage.js";
+import EditPostPage from "./api-project/EditPostPage.js"
 
 
 function App() {
@@ -82,6 +83,7 @@ function App() {
         <Route path="/project/create-post" element={<CreatePostPage />} />
         <Route path="/project/create-album" element={<CreateAlbumPage />} />
         <Route path="/students" element={<StudentPage />} />
+        <Route path="/project/posts/edit/:postId" element={<EditPostPage />} />
       </Routes>
     </>
   );

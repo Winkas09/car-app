@@ -315,3 +315,23 @@ nav a:hover {
 .delete-button-api:hover {
   background-color: darkred;
 }
+
+.delete-student {
+
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  width: 100%;
+}
+
+.delete-student:hover {
+  background-color: darkred;
+}
+

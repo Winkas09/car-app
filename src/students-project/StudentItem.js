@@ -7,7 +7,7 @@ const StudentItem = ({ student, onDelete }) => {
       <p>Age: {student.age}</p>
       <p>Phone Number: {student.phoneNumber}</p>
       <p>Email: {student.email}</p>
-      <button onClick={() => onDelete(student)}>Delete</button>
+      <button className='delete-student' onClick={() => onDelete(student)}>Delete</button>
     </li>
   );
 };

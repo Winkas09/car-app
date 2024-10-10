@@ -86,7 +86,7 @@ const AlbumDetailPage = () => {
           <p>Website: <a href={`http://${user.website}`} target="_blank" rel="noopener noreferrer">{user.website}</a></p>
         </div>
       )}
-      <button onClick={handleDelete}>Delete Album</button>
+      <button className='delete-button-api' onClick={handleDelete}>Delete Album</button>
       <Link to="/project/albums">Back to Albums</Link>
       {photos.length > 0 && (
         <div>

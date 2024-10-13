@@ -21,7 +21,7 @@ h4 {
   width: 100%;
 }
 
-form, .car-item, .todo-form {
+form, .car-item, .todo-form, .api-item {
   background: #fff;
   padding: 20px;
   margin: 20px auto;
@@ -113,6 +113,21 @@ li.todo-item button:first-of-type:hover {
   background-color: green;
 }
 
+li.todo-item button:nth-of-type(2) {
+  padding: 5px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: orange;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+li.todo-item button:nth-of-type(2):hover {
+  background-color: darkorange;
+}
+
 li.todo-item button:last-of-type {
   padding: 5px;
   margin: 5px;
@@ -180,19 +195,19 @@ a.active {
 
 a {
   text-decoration: none;
-padding: 10px 15px;
-border: 1px solid #ccc;
-border-radius: 4px;
-background-color: #007bff;
-color: white;
-cursor: pointer;
-display: inline-block;
-transition: background-color 0.3s ease;
-text-align: center;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  text-align: center;
 }
 
 a:hover {
-background-color: #0056b3;
+  background-color: #0056b3;
   color: black;
 }
 
@@ -220,50 +235,38 @@ nav a:hover {
   color: black;
 }
 
+.home-nav li a {
+  color: white;
+  background-color: #f38f8f;
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
 
+.home-nav li a:hover {
+  background-color: red;
+}
 
-  .home-nav li a {
-    color: white;
-    background-color: #f38f8f;
-    padding: 10px 15px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-  }
+.api-item a {
+  display: block;
+  text-align: center;
+}
 
-  .home-nav li a:hover {
-    background-color: red;
-  }
+p {
+  margin: 10px 0;
+  text-align: center;
+}
 
-  .api-item {
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-  }
+h3 {
+  text-align: center;
+}
 
-  .api-item a {
-    display: block;
-    text-align: center;
-  }
-
-  p {
-    margin: 10px 0;
-    text-align: center;
-  }
-
-  h3 {
-    text-align: center;
-  }
-
-  .spinner {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  /* Add these styles to the end of your App.css file */
+.spinner {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
 
 .post-list {
   list-style-type: none;
@@ -285,20 +288,20 @@ nav a:hover {
 }
 
 .post-list li a {
-  padding: 0; 
-  border: none; 
-  border-radius: 0; 
-  background-color: transparent; 
-  color: #333; 
-  font-weight: bold; 
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  color: #333;
+  font-weight: bold;
 }
 
 .post-list li a:hover {
-  text-decoration: underline; 
-  background-color: transparent; 
+  text-decoration: underline;
+  background-color: transparent;
 }
 
-.delete-button-api {
+.delete-button-api, .delete-student {
   display: inline-block;
   padding: 10px;
   margin: 10px;
@@ -309,29 +312,8 @@ nav a:hover {
   cursor: pointer;
   transition: background-color 0.3s ease;
   text-align: center;
-  width: 100px;
 }
 
-.delete-button-api:hover {
+.delete-button-api:hover, .delete-student:hover {
   background-color: darkred;
 }
-
-.delete-student {
-
-  display: inline-block;
-  padding: 10px;
-  margin: 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: red;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  text-align: center;
-  width: 100%;
-}
-
-.delete-student:hover {
-  background-color: darkred;
-}
-

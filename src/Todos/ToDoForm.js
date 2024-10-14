@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { ToDoContext } from "./ToDoContext";
-import "./App.css";
 import { API_URL } from "../api-project/Config";
+import styles from "./ToDoForm.module.css";
 
 const ToDoForm = () => {
   const [title, setTitle] = useState("");
@@ -43,8 +43,8 @@ const ToDoForm = () => {
   };
 
   return (
-    <form onSubmit={submitHandler} className="todo-form">
-      <label htmlFor="title" className="form-label">
+    <form onSubmit={submitHandler} className={styles.todoForm}>
+      <label htmlFor="title" className={styles.formLabel}>
         Title
       </label>
       <input
@@ -52,9 +52,9 @@ const ToDoForm = () => {
         id="title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="form-input"
+        className={styles.formInput}
       />
-      <label htmlFor="description" className="form-label">
+      <label htmlFor="description" className={styles.formLabel}>
         Description
       </label>
       <input
@@ -62,9 +62,9 @@ const ToDoForm = () => {
         id="description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        className="form-input"
+        className={styles.formInput}
       />
-      <label htmlFor="dueDate" className="form-label">
+      <label htmlFor="dueDate" className={styles.formLabel}>
         Due Date
       </label>
       <input
@@ -72,10 +72,10 @@ const ToDoForm = () => {
         id="dueDate"
         value={dueDate}
         onChange={(e) => setDueDate(e.target.value)}
-        className="form-input"
+        className={styles.formInput}
       />
-      <button type="submit" className="form-button">
-        Add ToDo
+      <button type="submit" className={styles.formButton}>
+        Add To-Do
       </button>
     </form>
   );

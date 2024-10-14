@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ToDoContext } from "./ToDoContext";
+import styles from "./ToDoItem.module.css";
 
 const ToDoItem = ({ todo }) => {
   const { id, title, description, dueDate, creationDate, done } = todo;
@@ -29,7 +30,7 @@ const ToDoItem = ({ todo }) => {
   };
 
   return (
-    <li className={`todo-item ${done ? "done" : ""}`}>
+    <li className={`${styles.todoItem} ${done ? styles.done : ""}`}>
       {isEditing ? (
         <>
           <input
@@ -51,13 +52,24 @@ const ToDoItem = ({ todo }) => {
       <p>Due date: {new Date(dueDate).toLocaleDateString()}</p>
       <p>Created on: {new Date(creationDate).toLocaleDateString()}</p>
       <p>{remainingTime()}</p>
-      <button onClick={() => toggleDone(id)}>{done ? "Undo" : "Done"}</button>
+      <button
+        className={`${styles.button} ${done ? styles.undo : styles.doneButton}`}
+        onClick={() => toggleDone(id)}
+      >
+        {done ? "Undo" : "Done"}
+      </button>
+      <button className={`${styles.button} ${styles.deleteButton}`} onClick={() => deleteTodo(id)}>
+        Delete
+      </button>
       {isEditing ? (
-        <button onClick={handleEdit}>Save</button>
+        <button className={`${styles.button} ${styles.saveButton}`} onClick={handleEdit}>
+          Save
+        </button>
       ) : (
-        <button onClick={() => setIsEditing(true)}>Edit</button>
+        <button className={`${styles.button} ${styles.editButton}`} onClick={() => setIsEditing(true)}>
+          Edit
+        </button>
       )}
-      <button onClick={() => deleteTodo(id)}>Delete</button>
     </li>
   );
 };

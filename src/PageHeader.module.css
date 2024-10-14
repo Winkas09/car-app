@@ -1,0 +1,49 @@
+/* PageHeader.module.css */
+li {
+    list-style-type: none;
+  }
+  
+  .nav ul {
+    width: 200px;
+    margin: 5px auto;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  nav {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  nav a {
+    color: black;
+    background-color: #007bff;
+    text-decoration: none;
+    margin: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 10px 15px;
+    border-radius: 4px;
+    width: 100px;
+    text-align: center;
+    display: inline-block;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+    background-color: tomato;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .active {
+    color: red;
+    font-weight: bold;
+    text-decoration: underline;
+  }

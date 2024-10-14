@@ -7,7 +7,7 @@ const ToDoPage = () => {
   return (
     <ToDoProvider>
       <div>
-        <h2>To-Do List</h2>
+        <h2 style={{ textAlign: "center" }}>To-Do List</h2>
         <ToDoForm />
         <ToDoList />
       </div>

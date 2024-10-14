@@ -1,0 +1,54 @@
+.todoItem {
+    width: auto;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #dad5d2;
+    transition: background-color 0.3s ease;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .todoItem.done {
+    background-color: #56ce72;
+    text-decoration: line-through black;
+  }
+  
+  .button {
+    background-color: green;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+    padding: 10px ;
+    border-radius: 4px;
+
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  .editButton {
+    background-color: blue;
+    color: white;
+  }
+  
+  .saveButton {
+    background-color: green;
+    color: white;
+  }
+  
+  .deleteButton {
+    background-color: red;
+    color: white;
+  }
+
+input, textarea {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    
+}
+

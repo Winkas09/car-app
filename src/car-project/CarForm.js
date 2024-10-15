@@ -1,7 +1,9 @@
-import React, { useState, useContext } from "react"; // cia klaida 
+import React, { useState, useContext } from "react";  
 import "../App.css"; 
-import { CarContext } from "./CarContext"; // cia klaida
-import { API_URL } from "../api-project/Config"; // cia klaida
+import { CarContext } from "./CarContext"; 
+import { API_URL } from "../api-project/Config"; 
+import Button from "@mui/material/Button";
+
 
 const CarForm = () => {
   const { addCar } = useContext(CarContext);
@@ -189,7 +191,7 @@ const CarForm = () => {
           placeholder="Discount"
         />
       </label>
-      <button type="submit">Add Car</button>
+      <Button variant="outlined" type="submit">Add car</Button>
     </form>
   );
 };

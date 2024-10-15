@@ -8,10 +8,36 @@ const ToDoForm = () => {
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
   const { addTodo } = useContext(ToDoContext);
+  const [titleIsValid, setTitleIsValid] = useState(true);
+  const [descriptionIsValid, setDescriptionIsValid] = useState(true);
+  const [dueDateIsValid, setDueDateIsValid] = useState(true);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (title.trim() && description.trim() && dueDate) {
+
+    let isValid = true;
+
+    if (!title.trim()) {
+      setTitleIsValid(false);
+      isValid = false;
+    } else {
+      setTitleIsValid(true);
+    }
+
+    if (!description.trim()) {
+      setDescriptionIsValid(false);
+      isValid = false;
+    } else {
+      setDescriptionIsValid(true);
+    }
+
+    if (!dueDate) {
+      setDueDateIsValid(false);
+      isValid = false;
+    } else {
+      setDueDateIsValid(true);
+    }
+      if (isValid) {
       const newTodo = {
         id: Math.random(),
         title,
@@ -44,7 +70,8 @@ const ToDoForm = () => {
 
   return (
     <form onSubmit={submitHandler} className={styles.todoForm}>
-      <label htmlFor="title" className={styles.formLabel}>
+      <label htmlFor="title"
+       className={`${styles.formLabel} ${!titleIsValid ? styles.invalidLabel : ''}`}>
         Title
       </label>
       <input
@@ -52,9 +79,12 @@ const ToDoForm = () => {
         id="title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className={styles.formInput}
+        className={`${styles.formInput} ${!titleIsValid ? styles.invalidInput : ''}`}
       />
-      <label htmlFor="description" className={styles.formLabel}>
+      {!titleIsValid && <span className={styles.errorMessage}>Title is required</span>}
+
+      <label htmlFor="description"
+       className={`${styles.formLabel} ${!descriptionIsValid ? styles.invalidLabel : ''}`}>
         Description
       </label>
       <input
@@ -62,9 +92,11 @@ const ToDoForm = () => {
         id="description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        className={styles.formInput}
+        className={`${styles.formInput} ${!descriptionIsValid ? styles.invalidInput : ''}`}
       />
-      <label htmlFor="dueDate" className={styles.formLabel}>
+      {!descriptionIsValid && <span className={styles.errorMessage}>Description is required</span>}
+      <label htmlFor="dueDate"
+       className={`${styles.formLabel} ${!dueDateIsValid ? styles.invalidLabel: ''}`}>
         Due Date
       </label>
       <input
@@ -72,8 +104,9 @@ const ToDoForm = () => {
         id="dueDate"
         value={dueDate}
         onChange={(e) => setDueDate(e.target.value)}
-        className={styles.formInput}
+        className={`${styles.formInput} ${!dueDateIsValid ? styles.invalidInput : ''}`}
       />
+      {!dueDateIsValid && <span className={styles.errorMessage}>Due Date is required</span>}
       <button type="submit" className={styles.formButton}>
         Add To-Do
       </button>

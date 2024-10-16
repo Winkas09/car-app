@@ -3,6 +3,7 @@ import CarForm from "./CarForm";
 import CarList from "./CarList";
 import { CarContext } from "./CarContext";
 import { API_URL } from "../api-project/Config";
+import {Container, Typography, Box} from "@mui/material";
 
 const CarPage = () => {
   const [cars, setCars] = useState([]);
@@ -52,11 +53,15 @@ const CarPage = () => {
 
   return (
     <CarContext.Provider value={ctxValue}>
-      <div>
-        <h1>Car Page</h1>
-        <CarForm addCar={addCar} />
-        <CarList />
-      </div>
+      <Container>
+        <Box my={4}>
+          <Typography variant="h3" component="h1" gutterBottom>
+            Car Page
+          </Typography>
+          <CarForm />
+          <CarList />
+        </Box>
+      </Container>
     </CarContext.Provider>
   );
 };

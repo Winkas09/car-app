@@ -5,15 +5,6 @@ li {
 
   }
   
-  .nav ul {
-    width: 200px;
-    margin: 5px auto;
-    padding: 20px;
-    margin-top: 20px;
-    background-color: #f4f4f4;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
   
   nav {
     background-color: #333;

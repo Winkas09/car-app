@@ -11920,18 +11920,10 @@
   ],
   "todos": [
     {
-      "id": "0.584702383811273",
-      "title": "adsad",
-      "description": "asdasd",
-      "dueDate": "2024-10-25",
-      "creationDate": "10/10/2024",
-      "done": false
-    },
-    {
-      "id": 0.7825947625769989,
-      "title": "a",
-      "description": "a",
-      "dueDate": "0001-01-01",
+      "id": "0.790473266984421",
+      "title": "Groceries",
+      "description": "Make a list of groceries : milk, butter, bread, tomatoes, eggs, ham.",
+      "dueDate": "2024-10-16",
       "creationDate": "10/15/2024",
       "done": false
     }

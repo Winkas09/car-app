@@ -1,7 +1,7 @@
 import React from "react";
 import calculateExtraPrice from "./ExtraPrice";
 import carDiscount from "./CarDiscount";
-import "../App.css";
+import { Card, CardContent, Typography, Button, List, ListItem, ListItemText } from "@mui/material";
 
 const CarItem = ({ car, onDelete }) => {
   const basePrice = parseFloat(car.basePrice);
@@ -17,32 +17,58 @@ const CarItem = ({ car, onDelete }) => {
   const finalPriceWithVAT = finalPrice + vat;
 
   return (
-    <div className="car-item">
-      <h3>
-        {car.brand} {car.model} ({car.year})
-      </h3>
-      <p>Automobilio kaina:</p>
-      <ul>
-        <li>Bazinė kaina: {basePrice}€</li>
-        <li>Papildomos paslaugos:
-          <ul>
-            <li>Variklio tipas: {car.engine} ({enginePrice}€)</li>
-            <li>Spalva: {car.color} ({colorPrice}€)</li>
-            <li>Transmisija: {car.transmission} ({transmissionPrice}€)</li>
-            <li>Viso už papildomas paslaugas: {totalExtraPrice}€</li>
-          </ul>
-        </li>
-        <li>Kainos sumažėjimas:
-          <ul>
-            <li>Dėl kilometražo: {carDiscount(car.mileage, 0, car.year, basePrice)}€</li>
-            <li>Nuolaida: {car.discount}€</li>
-            <li>Viso kainos sumažėjimas: {discount}€</li>
-          </ul>
-        </li>
-      </ul>
-      <p>Galutinė kaina su PVM: {finalPriceWithVAT}€</p>
-      <button onClick={() => onDelete(car)}>Delete</button>
-    </div>
+    <Card sx={{ marginBottom: 2 }}>
+      <CardContent>
+        <Typography variant="h5" component="div">
+          {car.brand} {car.model} ({car.year})
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Automobilio kaina:
+        </Typography>
+        <List>
+          <ListItem>
+            <ListItemText primary={`Bazinė kaina: ${basePrice}€`} />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Papildomos paslaugos:" />
+            <List>
+              <ListItem>
+                <ListItemText primary={`Variklio tipas: ${car.engine} (${enginePrice}€)`} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary={`Spalva: ${car.color} (${colorPrice}€)`} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary={`Transmisija: ${car.transmission} (${transmissionPrice}€)`} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary={`Viso už papildomas paslaugas: ${totalExtraPrice}€`} />
+              </ListItem>
+            </List>
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Kainos sumažėjimas:" />
+            <List>
+              <ListItem>
+                <ListItemText primary={`Dėl kilometražo: ${carDiscount(car.mileage, 0, car.year, basePrice)}€`} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary={`Nuolaida: ${car.discount}€`} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary={`Viso kainos sumažėjimas: ${discount}€`} />
+              </ListItem>
+            </List>
+          </ListItem>
+        </List>
+        <Typography variant="body1">
+          Galutinė kaina su PVM: {finalPriceWithVAT}€
+        </Typography>
+        <Button variant="contained" color="secondary" onClick={() => onDelete(car)} sx={{ marginTop: 2 }}>
+          Delete
+        </Button>
+      </CardContent>
+    </Card>
   );
 };
 

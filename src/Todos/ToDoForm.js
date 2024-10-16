@@ -3,50 +3,100 @@ import { ToDoContext } from "./ToDoContext";
 import { API_URL } from "../api-project/Config";
 import styles from "./ToDoForm.module.css";
 
+const initialInputState = {
+  title: {
+    value: "",
+    isValid: true,
+    errorMessage: "",
+  },
+  description: {
+    value: "",
+    isValid: true,
+    errorMessage: "",
+  },
+  dueDate: {
+    value: "",
+    isValid: true,
+    errorMessage: "",
+  },
+};
+
 const ToDoForm = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [dueDate, setDueDate] = useState("");
+  const [formInput, setFormInput] = useState(initialInputState);
+  const { title, description, dueDate } = formInput;
   const { addTodo } = useContext(ToDoContext);
-  const [titleIsValid, setTitleIsValid] = useState(true);
-  const [descriptionIsValid, setDescriptionIsValid] = useState(true);
-  const [dueDateIsValid, setDueDateIsValid] = useState(true);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormInput((prev) => {
+      const input = { ...prev[name] };
+      input.value = value;
+      if (!value.trim()) {
+        input.isValid = false;
+        input.errorMessage = `${name} is required`;
+      } else {
+        input.isValid = true;
+        input.errorMessage = "";
+      }
+      const newState = { ...prev };
+      newState[name] = input;
+      return newState;
+    });
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     let isValid = true;
 
-    if (!title.trim()) {
-      setTitleIsValid(false);
+    if (!title.value.trim()) {
+      setFormInput((prev) => ({
+        ...prev,
+        title: { ...prev.title, isValid: false, errorMessage: "Title is required" },
+      }));
       isValid = false;
     } else {
-      setTitleIsValid(true);
+      setFormInput((prev) => ({
+        ...prev,
+        title: { ...prev.title, isValid: true, errorMessage: "" },
+      }));
     }
 
-    if (!description.trim()) {
-      setDescriptionIsValid(false);
+    if (!description.value.trim()) {
+      setFormInput((prev) => ({
+        ...prev,
+        description: { ...prev.description, isValid: false, errorMessage: "Description is required" },
+      }));
       isValid = false;
     } else {
-      setDescriptionIsValid(true);
+      setFormInput((prev) => ({
+        ...prev,
+        description: { ...prev.description, isValid: true, errorMessage: "" },
+      }));
     }
 
-    if (!dueDate) {
-      setDueDateIsValid(false);
+    if (!dueDate.value) {
+      setFormInput((prev) => ({
+        ...prev,
+        dueDate: { ...prev.dueDate, isValid: false, errorMessage: "Due Date is required" },
+      }));
       isValid = false;
     } else {
-      setDueDateIsValid(true);
+      setFormInput((prev) => ({
+        ...prev,
+        dueDate: { ...prev.dueDate, isValid: true, errorMessage: "" },
+      }));
     }
-      if (isValid) {
+
+    if (isValid) {
       const newTodo = {
-        id: Math.random(),
-        title,
-        description,
-        dueDate,
+        id: String(Math.random()), // Ensure the id is a string
+        title: title.value,
+        description: description.value,
+        dueDate: dueDate.value,
         creationDate: new Date().toLocaleDateString(),
         done: false,
       };
-
 
       fetch(`${API_URL}/todos`, {
         method: "POST",
@@ -60,9 +110,7 @@ const ToDoForm = () => {
           addTodo(createdTodo);
         });
 
-      setTitle("");
-      setDescription("");
-      setDueDate("");
+      setFormInput(initialInputState);
     } else {
       console.error("Error: All fields are required");
     }
@@ -70,43 +118,54 @@ const ToDoForm = () => {
 
   return (
     <form onSubmit={submitHandler} className={styles.todoForm}>
-      <label htmlFor="title"
-       className={`${styles.formLabel} ${!titleIsValid ? styles.invalidLabel : ''}`}>
+      <label
+        htmlFor="title"
+        className={`${styles.formLabel} ${!title.isValid ? styles.invalidLabel : ''}`}
+      >
         Title
       </label>
       <input
         type="text"
         id="title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className={`${styles.formInput} ${!titleIsValid ? styles.invalidInput : ''}`}
+        name="title"
+        value={title.value}
+        onChange={handleInputChange}
+        className={`${styles.formInput} ${!title.isValid ? styles.invalidInput : ''}`}
       />
-      {!titleIsValid && <span className={styles.errorMessage}>Title is required</span>}
+      {!title.isValid && <p className={styles.errorMessage}>{title.errorMessage}</p>}
 
-      <label htmlFor="description"
-       className={`${styles.formLabel} ${!descriptionIsValid ? styles.invalidLabel : ''}`}>
+      <label
+        htmlFor="description"
+        className={`${styles.formLabel} ${!description.isValid ? styles.invalidLabel : ''}`}
+      >
         Description
       </label>
       <input
         type="text"
         id="description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        className={`${styles.formInput} ${!descriptionIsValid ? styles.invalidInput : ''}`}
+        name="description"
+        value={description.value}
+        onChange={handleInputChange}
+        className={`${styles.formInput} ${!description.isValid ? styles.invalidInput : ''}`}
       />
-      {!descriptionIsValid && <span className={styles.errorMessage}>Description is required</span>}
-      <label htmlFor="dueDate"
-       className={`${styles.formLabel} ${!dueDateIsValid ? styles.invalidLabel: ''}`}>
+      {!description.isValid && <p className={styles.errorMessage}>{description.errorMessage}</p>}
+
+      <label
+        htmlFor="dueDate"
+        className={`${styles.formLabel} ${!dueDate.isValid ? styles.invalidLabel : ''}`}
+      >
         Due Date
       </label>
       <input
         type="date"
         id="dueDate"
-        value={dueDate}
-        onChange={(e) => setDueDate(e.target.value)}
-        className={`${styles.formInput} ${!dueDateIsValid ? styles.invalidInput : ''}`}
+        name="dueDate"
+        value={dueDate.value}
+        onChange={handleInputChange}
+        className={`${styles.formInput} ${!dueDate.isValid ? styles.invalidInput : ''}`}
       />
-      {!dueDateIsValid && <span className={styles.errorMessage}>Due Date is required</span>}
+      {!dueDate.isValid && <p className={styles.errorMessage}>{dueDate.errorMessage}</p>}
+
       <button type="submit" className={styles.formButton}>
         Add To-Do
       </button>

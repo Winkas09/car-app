@@ -114,6 +114,7 @@ const CarForm = () => {
 
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+      {!validation.formIsValid && <Typography color="error">Please fill out all fields correctly.</Typography>}
       <TextField
         label="Brand"
         name="brand"
@@ -123,7 +124,7 @@ const CarForm = () => {
         helperText={!validation.brand.isValid && validation.brand.errorMessage}
         fullWidth
         margin="normal"
-        />
+      />
       <TextField
         label="Model"
         name="model"
@@ -133,7 +134,7 @@ const CarForm = () => {
         helperText={!validation.model.isValid && validation.model.errorMessage}
         fullWidth
         margin="normal"
-        />
+      />
       <TextField
         label="Year"
         name="year"
@@ -143,7 +144,7 @@ const CarForm = () => {
         helperText={!validation.year.isValid && validation.year.errorMessage}
         fullWidth
         margin="normal"
-        />
+      />
       <TextField
         label="Base Price"
         name="basePrice"
@@ -153,7 +154,7 @@ const CarForm = () => {
         helperText={!validation.basePrice.isValid && validation.basePrice.errorMessage}
         fullWidth
         margin="normal"
-        />
+      />
       <TextField
         label="Mileage"
         name="mileage"
@@ -163,7 +164,7 @@ const CarForm = () => {
         helperText={!validation.mileage.isValid && validation.mileage.errorMessage}
         fullWidth
         margin="normal"
-        />
+      />
       <TextField
         label="Image URL"
         name="imageUrl"
@@ -173,7 +174,12 @@ const CarForm = () => {
         helperText={!validation.imageUrl.isValid && validation.imageUrl.errorMessage}
         fullWidth
         margin="normal"
-        />
+      />
+      {formData.imageUrl && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
+          <img src={formData.imageUrl} alt="Car" style={{ maxWidth: '100%', maxHeight: '200px' }} />
+        </Box>
+      )}
       <TextField
         label="Discount"
         name="discount"
@@ -183,8 +189,9 @@ const CarForm = () => {
         helperText={!validation.discount.isValid && validation.discount.errorMessage}
         fullWidth
         margin="normal"
-        />
+      />
       <TextField
+        select
         label="Transmission"
         name="transmission"
         value={formData.transmission}
@@ -193,7 +200,10 @@ const CarForm = () => {
         helperText={!validation.transmission.isValid && validation.transmission.errorMessage}
         fullWidth
         margin="normal"
-        />
+      >
+        <MenuItem value="manual">Manual</MenuItem>
+        <MenuItem value="automatic">Automatic</MenuItem>
+      </TextField>
       <TextField
         select
         label="Engine"
@@ -202,7 +212,7 @@ const CarForm = () => {
         onChange={handleChange}
         fullWidth
         margin="normal"
-        >
+      >
         <MenuItem value="petrol">Petrol</MenuItem>
         <MenuItem value="diesel">Diesel</MenuItem>
         <MenuItem value="electric">Electric</MenuItem>
@@ -216,7 +226,7 @@ const CarForm = () => {
         onChange={handleChange}
         fullWidth
         margin="normal"
-        >
+      >
         <MenuItem value="black">Black</MenuItem>
         <MenuItem value="white">White</MenuItem>
         <MenuItem value="red">Red</MenuItem>
@@ -225,20 +235,19 @@ const CarForm = () => {
       </TextField>
       {formData.color === "other" && (
         <TextField
-        label="Other Color"
-        name="otherColor"
-        value={formData.otherColor}
-        onChange={handleChange}
-        fullWidth
-        margin="normal"
+          label="Other Color"
+          name="otherColor"
+          value={formData.otherColor}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
         />
       )}
-      {!validation.formIsValid && <Typography color="error">Please fill out all fields correctly.</Typography>}
       <Box sx={{ display: 'flex', justifyContent: 'center', padding: 2 }}>
         <Button type="submit" variant="contained" color="primary">
           Add Car
         </Button>
-        </Box>
+      </Box>
     </Box>
   );
 };

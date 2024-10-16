@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import calculateExtraPrice from "./ExtraPrice";
 import carDiscount from "./CarDiscount";
-import { Card, CardContent, Typography, Button, List, ListItem, ListItemText } from "@mui/material";
+import { Card, CardContent, Typography, Button, List, ListItem, ListItemText, Box } from "@mui/material";
 
 const CarItem = ({ car, onDelete }) => {
+  const [imageError, setImageError] = useState(false);
+
   const basePrice = parseFloat(car.basePrice);
   const { enginePrice, colorPrice, transmissionPrice, totalExtraPrice } = calculateExtraPrice(
     car.engine,
@@ -22,6 +24,16 @@ const CarItem = ({ car, onDelete }) => {
         <Typography variant="h5" component="div">
           {car.brand} {car.model} ({car.year})
         </Typography>
+        {car.imageUrl && !imageError && (
+          <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2, padding: 2 }}>
+            <img
+              src={car.imageUrl}
+              alt={`${car.brand} ${car.model}`}
+              style={{ maxWidth: '100%', maxHeight: '200px', margin: 'auto' }}
+              onError={() => setImageError(true)}
+            />
+          </Box>
+        )}
         <Typography variant="body2" color="text.secondary">
           Automobilio kaina:
         </Typography>

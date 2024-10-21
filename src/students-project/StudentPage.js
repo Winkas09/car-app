@@ -52,11 +52,31 @@ const StudentPage = () => {
       .catch(error => console.error('Error deleting student:', error));
   };
 
+  const editStudent = (updatedStudent) => {
+    fetch(`${API_URL}/students/${updatedStudent.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedStudent),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const updatedStudents = students.map(student =>
+          student.id === updatedStudent.id ? updatedStudent : student
+        );
+        setStudents(updatedStudents);
+      })
+      .catch(error => console.error('Error editing student:', error));
+  };
+
   return (
-    <div>
-      <h1>Student Management</h1>
-      <StudentForm onAddStudent={addStudent} />
-      <StudentList students={students} onDelete={deleteStudent} />
+    <div style={{ padding: '20px' }}>
+      <h1>Student Page</h1>
+      <StudentForm addStudent={addStudent} />
+      <StudentList students={students} deleteStudent={deleteStudent} editStudent={editStudent} />
     </div>
   );
 };

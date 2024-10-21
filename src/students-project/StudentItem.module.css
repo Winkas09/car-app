@@ -1,0 +1,35 @@
+.studentItem {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.editInput {
+  margin-right: 10px;
+}
+
+.button {
+  margin-right: 10px;
+}
+
+.editButton {
+  margin-left: 10px;
+}
+
+.errorInput {
+  border: 1px solid red;
+}
+
+.errorLabel {
+  color: red;
+}
+
+.errorMessage {
+  color: red;
+  display: block;
+  margin-top: 10px;
+}
+
+.formGroup {
+  margin-bottom: 10px;
+}

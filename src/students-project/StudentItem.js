@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './StudentItem.module.css';
 
 const StudentItem = ({ student, onDelete, onEdit }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -15,7 +16,7 @@ const StudentItem = ({ student, onDelete, onEdit }) => {
   };
 
   return (
-    <li>
+    <li className={styles.studentItem}>
       {isEditing ? (
         <div>
           <input
@@ -23,31 +24,31 @@ const StudentItem = ({ student, onDelete, onEdit }) => {
             name="name"
             value={editFormData.name}
             onChange={handleEditChange}
-            style={{ marginRight: '10px' }}
+            className={styles.editInput}
           />
           <input
             type="text"
             name="age"
             value={editFormData.age}
             onChange={handleEditChange}
-            style={{ marginRight: '10px' }}
+            className={styles.editInput}
           />
           <input
             type="text"
             name="phoneNumber"
             value={editFormData.phoneNumber}
             onChange={handleEditChange}
-            style={{ marginRight: '10px' }}
+            className={styles.editInput}
           />
           <input
             type="text"
             name="email"
             value={editFormData.email}
             onChange={handleEditChange}
-            style={{ marginRight: '10px' }}
+            className={styles.editInput}
           />
-          <button onClick={handleEditSubmit} style={{ marginRight: '10px' }}>Save</button>
-          <button onClick={() => setIsEditing(false)}>Cancel</button>
+          <button onClick={handleEditSubmit} className={styles.button}>Save</button>
+          <button onClick={() => setIsEditing(false)} className={styles.button}>Cancel</button>
         </div>
       ) : (
         <div>
@@ -56,7 +57,7 @@ const StudentItem = ({ student, onDelete, onEdit }) => {
           <p>Phone Number: {student.phoneNumber}</p>
           <p>Email: {student.email}</p>
           <button className='delete-student' onClick={() => onDelete(student)}>Delete</button>
-          <button onClick={() => setIsEditing(true)} style={{ marginLeft: '10px' }}>Edit</button>
+          <button onClick={() => setIsEditing(true)} className={styles.editButton}>Edit</button>
         </div>
       )}
     </li>

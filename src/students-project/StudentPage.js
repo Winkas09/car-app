@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import StudentForm from './StudentForm';
 import StudentList from './StudentList';
 import { API_URL } from '../api-project/Config';
+import styles from './StudentPage.module.css';
 
 const StudentPage = () => {
   const [students, setStudents] = useState([]);
@@ -73,8 +74,8 @@ const StudentPage = () => {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Student Page</h1>
+    <div className={styles.page}>
+      <h1 className={styles.title}>Student Page</h1>
       <StudentForm addStudent={addStudent} />
       <StudentList students={students} deleteStudent={deleteStudent} editStudent={editStudent} />
     </div>

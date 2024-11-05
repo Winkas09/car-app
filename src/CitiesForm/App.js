@@ -1,3 +1,4 @@
+// App.js
 import React from "react";
 import CitiesPage from "./CitiesPage";
 import "./App.css"; // Import the CSS file

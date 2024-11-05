@@ -1,3 +1,4 @@
+// CitiesList.js
 import React from "react";
 import CitiesItem from "./CitiesItem";
 

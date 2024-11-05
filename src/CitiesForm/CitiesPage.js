@@ -1,48 +1,12 @@
-import React, { useState, useEffect } from "react";
+// CitiesPage.js
+import React, { useContext } from "react";
 import CitiesList from "./CitiesList";
 import CitiesForm from "./CitiesForm";
 import "./App.css";
-import { API_URL } from "../api-project/Config";
+import { CitiesContext, CitiesProvider } from "./CitiesContext";
 
 const CitiesPage = () => {
-  const [cities, setCities] = useState([]);
-
-  useEffect(() => {
-    const fetchCities = async () => {
-      try {
-        const response = await fetch(`${API_URL}/cities`);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setCities(data);
-      } catch (error) {
-        console.error("There was a problem with the fetch operation:", error);
-      }
-    };
-    fetchCities();
-  }, []);
-
-  const addCity = async (city) => {
-    try {
-      const response = await fetch(`${API_URL}/cities`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(city),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to add city");
-      }
-
-      const addedCity = await response.json(); // Parse the response from the API
-      setCities([...cities, addedCity]); // Update local state with the new city
-    } catch (error) {
-      console.error("Error adding city:", error);
-    }
-  };
+  const { cities, addCity } = useContext(CitiesContext);
 
   return (
     <div className="cities-page">
@@ -53,4 +17,10 @@ const CitiesPage = () => {
   );
 };
 
-export default CitiesPage;
+const CitiesPageWithProvider = () => (
+  <CitiesProvider>
+    <CitiesPage />
+  </CitiesProvider>
+);
+
+export default CitiesPageWithProvider;

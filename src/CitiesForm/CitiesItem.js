@@ -1,8 +1,11 @@
-import React from "react";
+// CitiesItem.js
+import React, { useContext } from "react";
+import { CitiesContext } from "./CitiesContext";
 import "./App.css";
 
 const CitiesItem = ({ city, isLastOdd }) => {
-  const { name, population, location, touristAttractions, isCapital } = city;
+  const { removeCity } = useContext(CitiesContext);
+  const { id, name, population, location, touristAttractions, isCapital } = city;
   const { continent, country } = location;
 
   const capitalizeWords = (str) => {
@@ -34,6 +37,7 @@ const CitiesItem = ({ city, isLastOdd }) => {
           {formattedAttractions.length === 1 ? "is" : "are"} {formattedAttractions.join(", ")}.
         </p>
       )}
+      <button onClick={() => removeCity(id)}>Remove City</button>
     </div>
   );
 };

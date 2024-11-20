@@ -9,8 +9,13 @@ const CarPage = () => {
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_URL}/cars`)
-      .then((response) => response.json())
+    fetch(`${API_URL}/api/car-project`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then((data) => setCars(data))
       .catch((error) => console.error("Error fetching cars:", error));
   }, []);
@@ -20,14 +25,14 @@ const CarPage = () => {
   };
 
   const deleteCar = (carToDelete) => {
-    fetch(`${API_URL}/cars/${carToDelete.id}`, {
+    fetch(`${API_URL}/api/car-project/${carToDelete._id}`, {
       method: "DELETE",
     })
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const updatedCars = cars.filter(car => car.id !== carToDelete.id);
+        const updatedCars = cars.filter(car => car._id !== carToDelete._id);
         setCars(updatedCars);
       })
       .catch((error) => {
@@ -36,7 +41,7 @@ const CarPage = () => {
   };
 
   const editCar = (updatedCar) => {
-    fetch(`${API_URL}/cars/${updatedCar.id}`, {
+    fetch(`${API_URL}/api/car-project/${updatedCar._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -47,8 +52,11 @@ const CarPage = () => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
+        return response.json();
+      })
+      .then((updatedCar) => {
         const updatedCars = cars.map((car) =>
-          car.id === updatedCar.id ? updatedCar : car
+          car._id === updatedCar._id ? updatedCar : car
         );
         setCars(updatedCars);
       })

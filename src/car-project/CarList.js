@@ -6,7 +6,7 @@ import { Typography, Box, Paper } from "@mui/material";
 const CarList = () => {
   const { cars, deleteCar, editCar } = useContext(CarContext);
 
-  if (cars.length === 0) {
+  if (!Array.isArray(cars) || cars.length === 0) {
     return <Typography variant="h6">No cars yet...</Typography>;
   }
   return (
